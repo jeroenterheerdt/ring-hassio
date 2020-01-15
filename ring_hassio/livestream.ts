@@ -5,8 +5,6 @@ const fs = require('fs'),
   path = require('path'),
   express = require('express')
 
-//const ffmpeg_static = require('ffmpeg-static')
-//console.log('FFmpeg dir: '+ffmpeg_static.path)
 /**
  * This example creates an hls stream which is viewable in a browser
  * It also starts web app to view the stream at http://localhost:3000
@@ -75,19 +73,20 @@ const fs = require('fs'),
   }, 5 * 60 * 1000) // Stop after 5 minutes.
 }
 
-try {
-  while(true) {
+//try {
+  //while(true) {
     example()
-  }
-}
-catch (e) {
+  //}
+//}
+//catch (e) {
 
-}
-finally {
-  while(true) {
-    example()
-  }
-}
+//}
+//finally {
+  //while(true) {
+//    example()
+  //}
+//}
+
 
 
 

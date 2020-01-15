@@ -1,0 +1,20 @@
+{
+    "name": "ring_hassio",
+    "version": "1.0.0",
+    "description": "Ring Node App on Docker",
+    "author": "Jeroen ter Heerdt",
+    "main": "browser-example.js",
+    "scripts": {
+        "start": "node browser-example.js"
+    },
+    "dependencies": {
+        "dotenv-extended": "^2.7.1",
+        "express": "^4.17.1",
+        "ring-client-api": "5.12.1"
+    },
+    "devDependencies": {
+        "@types/node": "^13.1.6",
+        "@types/socket.io-client": "^1.4.32",
+        "typescript": "^3.7.4"
+    }
+}

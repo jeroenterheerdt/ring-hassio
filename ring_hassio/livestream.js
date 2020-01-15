@@ -40,8 +40,6 @@ require("dotenv/config");
 var ring_client_api_1 = require("ring-client-api");
 var util_1 = require("util");
 var fs = require('fs'), path = require('path'), express = require('express');
-//const ffmpeg_static = require('ffmpeg-static')
-//console.log('FFmpeg dir: '+ffmpeg_static.path)
 /**
  * This example creates an hls stream which is viewable in a browser
  * It also starts web app to view the stream at http://localhost:3000
@@ -116,14 +114,14 @@ function example() {
     });
 }
 try {
-    while (true) {
-        example();
-    }
+    //while(true) {
+    example();
+    //}
 }
 catch (e) {
 }
-finally {
-    while (true) {
-        example();
-    }
-}
+//finally {
+//while(true) {
+//    example()
+//}
+//}
