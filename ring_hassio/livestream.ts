@@ -32,7 +32,7 @@ const fs = require('fs'),
     publicOutputDirectory = path.join('public', 'output')
 
   app.use('/', express.static('public'))
-  app.listen(3001, () => {
+  app.listen(3000, () => {
     console.log(
       'Listening on port 3000.  Go to http://localhost:3000 in your browser. Probably opening http://localhost:3000/output/stream.m3u8 in VLC will work better.'
     )
@@ -65,12 +65,12 @@ const fs = require('fs'),
   sipSession.onCallEnded.subscribe(() => {
     //console.log('Call has ended')
     //process.exit()
-    example()
+    //example()
   })
 
   setTimeout(function() {
     //console.log('Stopping call...')
-    //sipSession.stop()
+    sipSession.stop()
     example()
   }, 5 * 60 * 1000) // Stop after 5 minutes.
 }

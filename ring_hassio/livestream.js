@@ -1,4 +1,5 @@
 "use strict";
+//Far majority of this code by Dgreif https://github.com/dgreif/ring/examples/browser_example.ts
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -67,7 +68,7 @@ function example() {
                     }
                     app = express(), publicOutputDirectory = path.join('public', 'output');
                     app.use('/', express.static('public'));
-                    app.listen(3001, function () {
+                    app.listen(3000, function () {
                         console.log('Listening on port 3000.  Go to http://localhost:3000 in your browser. Probably opening http://localhost:3000/output/stream.m3u8 in VLC will work better.');
                     });
                     return [4 /*yield*/, util_1.promisify(fs.exists)(publicOutputDirectory)];
@@ -101,11 +102,11 @@ function example() {
                     sipSession.onCallEnded.subscribe(function () {
                         //console.log('Call has ended')
                         //process.exit()
-                        example();
+                        //example()
                     });
                     setTimeout(function () {
                         //console.log('Stopping call...')
-                        //sipSession.stop()
+                        sipSession.stop();
                         example();
                     }, 5 * 60 * 1000); // Stop after 5 minutes.
                     return [2 /*return*/];
