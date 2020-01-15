@@ -1,3 +1,5 @@
+//Far majority of this code by Dgreif https://github.com/dgreif/ring/examples/browser_example.ts
+
 import 'dotenv/config'
 import { RingApi } from 'ring-client-api'
 import { promisify } from 'util'
@@ -30,7 +32,7 @@ const fs = require('fs'),
     publicOutputDirectory = path.join('public', 'output')
 
   app.use('/', express.static('public'))
-  app.listen(3000, () => {
+  app.listen(3001, () => {
     console.log(
       'Listening on port 3000.  Go to http://localhost:3000 in your browser. Probably opening http://localhost:3000/output/stream.m3u8 in VLC will work better.'
     )
