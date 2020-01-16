@@ -4,9 +4,9 @@
     "slug": "ring_hassio",
     "description": "A Hass.IO add-on for Ring Doorbells, Cameras, Alarm System, and Smart Lighting.",
     "url": "https://github.com/jeroenterheerdt/ring-hassio",
+    "arch": ["armhf","armv7","aarch64","amd64","i386"]
     "startup":"application",
     "boot":"auto",
-    "homeassistant_api":true,
     "ports":
     {
         "3000/tcp":3000
