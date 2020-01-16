@@ -18,6 +18,5 @@
     "schema": {
         "ring_username": "str",
         "ring_password": "str"
-    },
-    "webui": "http://HOST:[PORT:3000]/output/stream.m3u8"
+    }
 }
