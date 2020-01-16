@@ -7,16 +7,13 @@ COPY run.sh /
 #COPY config.js /
 
 #install requirements
-RUN apk add --no-cache jq
-RUN apk add --no-cache ffmpeg
-RUN apk add --no-cache git nodejs nodejs-npm curl wget unzip \
-    && npm set unsafe-perm true \
-    && npm i npm@latest -g 
+RUN apk add --update --no-cache jq
+# cannot install ffmpeg or git or any of the other stuff that is required for this add-on.
 
-RUN apk add --no-cache git
-RUN apk add --no-cache ffmpeg
-RUN apk add --no-cache nodejs
-RUN apk add --no-cache nodejs-npm
+RUN apk add --update --no-cache git
+RUN apk add --update --no-cache ffmpeg
+RUN apk add --update --no-cache nodejs
+RUN apk add --update --no-cache nodejs-npm
 RUN npm set unsafe-perm true
 RUN npm i npm@latest -g
 
