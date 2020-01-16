@@ -3,17 +3,28 @@ FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
-#install requirements
-RUN apk add -no-cache git ffmpeg nodejs nodejs-npm \
-    && npm set unsafe-perm true \
-    && npm i npm@latest -g
+COPY run.sh /
+#COPY config.js /
 
-RUN apk add -no-cache jq
+#install requirements
+RUN apk add --no-cache jq
+RUN apk add --no-cache ffmpeg
+RUN apk add --no-cache git nodejs nodejs-npm curl wget unzip \
+    && npm set unsafe-perm true \
+    && npm i npm@latest -g 
+
+RUN apk add --no-cache git
+RUN apk add --no-cache ffmpeg
+RUN apk add --no-cache nodejs
+RUN apk add --no-cache nodejs-npm
+RUN npm set unsafe-perm true
+RUN npm i npm@latest -g
+
+
 
 RUN git clone https://github.com/jeroenterheerdt/ring-hassio . \
 && npm install --unsafe-perm
 
-COPY run.sh /
-COPY config.js /
+
 RUN chmod a+x /run.sh
 CMD ["/run.sh"]
