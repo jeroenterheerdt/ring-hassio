@@ -1,12 +1,19 @@
-FROM node:10
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN apt-get update && apt-get install -y ffmpeg
-RUN npm install
+ENV LANG C.UTF-8
 
-COPY . .
+#install requirements
+RUN apk add -no-cache git ffmpeg nodejs nodejs-npm \
+    && npm set unsafe-perm true \
+    && npm i npm@latest -g
 
-EXPOSE 3000
+RUN apk add -no-cache jq
 
-CMD ["node", "livestream.js"]
+RUN git clone https://github.com/jeroenterheerdt/ring-hassio . \
+&& npm install --unsafe-perm
+
+COPY run.sh /
+COPY config.js /
+RUN chmod a+x /run.sh
+CMD ["/run.sh"]
