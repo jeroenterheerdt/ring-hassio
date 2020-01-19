@@ -3,9 +3,9 @@
     "version": "1.0.0",
     "description": "Ring Node App on Docker",
     "author": "Jeroen ter Heerdt",
-    "main": "browser-example.js",
+    "main": "livestream.js",
     "scripts": {
-        "start": "node browser-example.js"
+        "start": "node livestream.js"
     },
     "dependencies": {
         "dotenv-extended": "^2.7.1",
