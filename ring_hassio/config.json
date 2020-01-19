@@ -1,22 +1,28 @@
 {
     "name": "Ring Hassio",
     "version": "0.0.1",
-    "slug": "ring_hassio",
+    "slug": "ringhassio",
     "description": "A Hass.IO add-on for Ring Doorbells, Cameras, Alarm System, and Smart Lighting.",
-    "url": "https://github.com/jeroenterheerdt/ring-hassio",
-    "arch": ["armhf","armv7","aarch64","amd64","i386"],
-    "startup":"application",
+    "url": "https://github.com/jeroenterheerdt/ring-hassio/tree/master/ring_hassio",
+    "startup": "application",
+    "arch": [
+      "aarch64",
+      "amd64",
+      "armhf",
+      "armv7",
+      "i386"
+    ],
     "boot":"auto",
     "ports":
     {
         "3000/tcp":3000
     },
     "options": {
-        "ring_username":null,
-        "ring_password":null
+        "ring_username": "your_username",
+        "ring_password": "your_password"
     },
     "schema": {
-        "ring_username": "str",
-        "ring_password": "str"
+        "ring_username":"str",
+        "ring_password":"str"
     }
 }
