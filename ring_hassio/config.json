@@ -22,7 +22,7 @@
         "ring_password": "your_password"
     },
     "schema": {
-        "ring_username":"str",
+        "ring_username":"email",
         "ring_password":"str"
     }
 }
