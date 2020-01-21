@@ -13,7 +13,7 @@ RUN apk add --no-cache \
     nodejs=12.14.0-r0 \
     npm=12.14.0-r0 \
     ffmpeg && \
-    mkdir /public/output && \
+    mkdir -p /public/output && \
     npm install --unsafe-perm
 COPY run.sh /
 RUN chmod a+x /run.sh
