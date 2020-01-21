@@ -16,8 +16,8 @@ RUN apk add --no-cache \
     mkdir /public && \
     cd public && \
     mkdir output && \
-    cd /
-    #npm install --unsafe-perm
+    cd / && \
+    npm install --unsafe-perm
 COPY run.sh /
 RUN chmod a+x /run.sh
 CMD [ "/run.sh" ]
