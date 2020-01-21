@@ -10,8 +10,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 COPY package.json /
 COPY livestream.js /
 RUN apk add --no-cache \
-    nodejs \
-    npm \
+    nodejs=12.14.0-r0 \
+    npm=12.14.0-r0 \
     ffmpeg && \
     mkdir /public && \
     cd public && \
