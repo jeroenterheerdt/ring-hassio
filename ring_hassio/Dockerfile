@@ -12,7 +12,8 @@ COPY livestream.js /
 RUN apk add --no-cache \
     nodejs=12.14.0-r0 \
     npm=12.14.0-r0 \
-    ffmpeg && \
+    ffmpeg \
+    git && \
     mkdir -p /public/output && \
     npm install --unsafe-perm
 COPY run.sh /
