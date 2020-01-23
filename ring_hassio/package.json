@@ -13,7 +13,7 @@
         "ring-client-api": "5.12.1"
     },
     "devDependencies": {
-        "@types/node": "^13.1.6",
+        "@types/node": "^13.5.0",
         "@types/socket.io-client": "^1.4.32",
         "typescript": "^3.7.4"
     }
