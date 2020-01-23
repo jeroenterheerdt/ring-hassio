@@ -12,7 +12,7 @@ RUN apk add --no-cache \
     npm=12.14.0-r0 \
     ffmpeg \
     git && \
-    cd /
+    cd / && \
     git clone https://github.com/jeroenterheerdt/ring-hassio && \
     cd ring-hassio/ring_hassio && \
     mkdir -p public/output && \
