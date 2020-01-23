@@ -16,6 +16,6 @@ RUN apk add --no-cache \
     cd ring-hassio/ring_hassio && \
     mkdir -p public/output && \
     npm install --unsafe-perm && \
-    chmox a+x run.sh
+    chmod a+x run.sh
 
 CMD [ "./run.sh" ]
