@@ -9,8 +9,10 @@
     },
     "dependencies": {
         "dotenv-extended": "^2.7.1",
-        "express": "^4.17.1",
-        "ring-client-api": "5.12.1"
+        "ring-client-api": "5.12.1",
+        "http": "^0.0.0",
+        "zlib": "^1.0.5",
+        "url": "^0.11.0"
     },
     "devDependencies": {
         "@types/node": "^13.5.0",

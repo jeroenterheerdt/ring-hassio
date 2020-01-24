@@ -5,16 +5,18 @@ import { RingApi } from 'ring-client-api'
 import { promisify } from 'util'
 const fs = require('fs'),
   path = require('path'),
-  express = require('express')
+  http = require('http'),
+  url = require('url'),
+  zlib = require('zlib')  
 
+const PORT = 3000;
 /**
  * This example creates an hls stream which is viewable in a browser
- * It also starts web app to view the stream at http://localhost:3000
+ * It also starts web app to view the stream at http://localhost:PORT
  **/
 
- async function example() {
+ async function startStream() {
   const ringApi = new RingApi({
-      // Replace with your ring email/password
       email: process.env.RING_EMAIL,
       password: process.env.RING_PASS,
       // Refresh token is used when 2fa is on
@@ -28,15 +30,93 @@ const fs = require('fs'),
     return
   }
 
-  const app = express(),
-    publicOutputDirectory = path.join('public', 'output')
+  const publicOutputDirectory = path.join('public', 'output')
 
-  app.use('/', express.static('public'))
-  app.listen(3000, () => {
-    console.log(
-      'Listening on port '+process.env.PORT+'.  Go to http://localhost:3000 in your browser. Probably opening http://localhost:3000/output/stream.m3u8 in VLC will work better.'
-    )
-  })
+  var server = http.createServer(function (req, res) {
+    var uri = url.parse(req.url).pathname;
+
+    if (uri == '/index.html') {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.write('<html><head><title>HLS Player fed by node.js' +
+          '</title></head><body>');
+      res.write('<video src="http://' + req.socket.localAddress +
+          ':' + PORT + '/output/stream.m3u8" controls autoplay></body></html>');
+      res.end();
+      return;
+    }
+
+    var filename = path.join("./", uri);
+	  fs.exists(filename, function (exists) {
+		  if (!exists) {
+		  	console.log('file not found: ' + filename);
+		  	res.writeHead(404, { 'Content-Type': 'text/plain' });
+		  	res.write('file not found: %s\n', filename);
+		  	res.end();
+		  }  else {
+		   	  console.log('sending file: ' + filename);
+		   	  switch (path.extname(uri)) {
+		   	  case '.m3u8':
+		  		  fs.readFile(filename, function (err, contents) {
+					  if (err) {
+					  	res.writeHead(500);
+					  	res.end();
+					  } else if (contents) {
+					    res.writeHead(200,
+					  	  {'Content-Type':
+						    'application/vnd.apple.mpegurl'});
+						  var ae = req.headers['accept-encoding'];
+						  if (ae && ae.match(/\bgzip\b/)) {
+						  	zlib.gzip(contents, function (err, zip) {
+						  		if (err) throw err;
+  								res.writeHead(200,
+  								    {'content-encoding': 'gzip'});
+  								res.end(zip);
+  							});
+  						} else {
+  							res.end(contents, 'utf-8');
+  						}
+  					} else {
+  						console.log('empty playlist');
+  						res.writeHead(500);
+  						res.end();
+  					}
+  				});
+  				break;
+  			case '.ts':
+  				res.writeHead(200, { 'Content-Type':
+  				    'video/MP2T' });
+  				var stream = fs.createReadStream(filename,
+  				    { bufferSize: 64 * 1024 });
+  				stream.pipe(res);
+  				break;
+	  		default:
+	  			console.log('unknown file type: ' +
+	  			    path.extname(uri));
+	  			res.writeHead(500);
+	  			res.end();
+	  		}
+	  	}
+	});
+  }).listen(PORT);
+
+  // Maintain a hash of all connected sockets
+  var sockets = {}, nextSocketId = 0;
+  server.on('connection', function (socket) {
+    // Add a newly connected socket
+    var socketId = nextSocketId++;
+    sockets[socketId] = socket;
+    console.log('socket', socketId, 'opened');
+
+    // Remove the socket when it closes
+    socket.on('close', function () {
+      console.log('socket', socketId, 'closed');
+      delete sockets[socketId];
+    });
+
+    // Extend socket lifetime for demo purposes
+    socket.setTimeout(4000);
+  });
+  console.log('Started server, listening on port '+PORT+'.')
 
   if (!(await promisify(fs.exists)(publicOutputDirectory))) {
     await promisify(fs.mkdir)(publicOutputDirectory)
@@ -63,31 +143,32 @@ const fs = require('fs'),
   })
 
   sipSession.onCallEnded.subscribe(() => {
-    //console.log('Call has ended')
-    //process.exit()
-    //example()
+    console.log('Call has ended')
+    server.close(function() {console.log('Server closed!');});
+    // Destroy all open sockets
+    for (var socketId in sockets) {
+      console.log('socket', socketId, 'destroyed');
+      sockets[socketId].destroy();
+    }
+    //app.stop()
+    console.log('Restarting server')
+    startStream()
   })
 
   setTimeout(function() {
-    //console.log('Stopping call...')
+    console.log('Stopping call...')
     sipSession.stop()
-    example()
-  }, 5 * 60 * 1000) // Stop after 5 minutes.
+    
+  }, 10* 60 * 1000) // 10*60*1000 Stop after 10 minutes.
 }
 
-//try {
-  //while(true) {
-    example()
-  //}
-//}
-//catch (e) {
-
-//}
-//finally {
-  //while(true) {
-//    example()
-  //}
-//}
+if(!('RING_EMAIL' in process.env) || !('RING_PASS' in process.env)) {
+  console.log('Missing environment variables. Check RING_EMAIL and RING_PASS are set.')
+  process.exit()
+}
+else {
+  startStream()
+}
 
 
 
