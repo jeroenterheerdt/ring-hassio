@@ -30,22 +30,24 @@ const PORT = 3000;
     return
   }
 
-  const publicOutputDirectory = path.join('public', 'output')
+  //const publicOutputDirectory = path.join('public','output')
+  const publicOutputDirectory = path.join('public/')
+  console.log('output directory: '+publicOutputDirectory)
 
   var server = http.createServer(function (req, res) {
     var uri = url.parse(req.url).pathname;
-
-    if (uri == '/index.html') {
+    console.log('requested uri: '+uri)
+    if (uri == '/index.html' || uri == '/') {
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.write('<html><head><title>HLS Player fed by node.js' +
           '</title></head><body>');
-      res.write('<video src="http://' + req.socket.localAddress +
-          ':' + PORT + '/output/stream.m3u8" controls autoplay></body></html>');
+      res.write('Stream: http://[IP]:'+PORT+'/public/stream.m3u8</body></html>');
       res.end();
       return;
     }
 
     var filename = path.join("./", uri);
+    console.log('mapped filename: '+filename)
 	  fs.exists(filename, function (exists) {
 		  if (!exists) {
 		  	console.log('file not found: ' + filename);
@@ -88,7 +90,7 @@ const PORT = 3000;
   				var stream = fs.createReadStream(filename,
   				    { bufferSize: 64 * 1024 });
   				stream.pipe(res);
-  				break;
+          break;
 	  		default:
 	  			console.log('unknown file type: ' +
 	  			    path.extname(uri));

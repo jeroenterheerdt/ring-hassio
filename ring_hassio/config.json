@@ -15,7 +15,7 @@
     "boot":"auto",
     "ingress": true,
     "ingress_port": 3000,
-    "webui": "http://[HOST]:[PORT:3000]/output/stream.m3u8",
+    "webui": "http://[HOST]:[PORT:3000]/public/index.html",
     "options": {
         "ring_username": "your_username",
         "ring_password": "your_password"
