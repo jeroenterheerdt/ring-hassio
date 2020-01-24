@@ -32,7 +32,7 @@ const fs = require('fs'),
     publicOutputDirectory = path.join('public', 'output')
 
   app.use('/', express.static('public'))
-  app.listen(process.env.PORT, () => {
+  app.listen(3000, () => {
     console.log(
       'Listening on port '+process.env.PORT+'.  Go to http://localhost:3000 in your browser. Probably opening http://localhost:3000/output/stream.m3u8 in VLC will work better.'
     )
