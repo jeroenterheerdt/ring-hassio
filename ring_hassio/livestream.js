@@ -69,7 +69,7 @@ function example() {
                     app = express(), publicOutputDirectory = path.join('public', 'output');
                     app.use('/', express.static('public'));
                     app.listen(3000, function () {
-                        console.log('Listening on port ' + process.env.PORT + '.  Go to http://localhost:3000 in your browser. Probably opening http://localhost:3000/output/stream.m3u8 in VLC will work better.');
+                        console.log('Listening on port 3000.  Go to http://localhost:3000 in your browser. Probably opening http://localhost:3000/output/stream.m3u8 in VLC will work better.');
                     });
                     return [4 /*yield*/, util_1.promisify(fs.exists)(publicOutputDirectory)];
                 case 2:

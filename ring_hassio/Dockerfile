@@ -16,7 +16,6 @@ RUN apk add --no-cache \
     cd / && \
     git clone https://github.com/jeroenterheerdt/ring-hassio && \
     cd ring-hassio/ring_hassio && \
-    mkdir -p public/output && \
     npm install --unsafe-perm && \
     chmod a+x run.sh
 
