@@ -67,6 +67,17 @@ function startStream() {
                         return [2 /*return*/];
                     }
                     publicOutputDirectory = path.join('public/');
+                    /*fs.readdir(publicOutputDirectory, (err, files) => {
+                      if (err) throw err;
+                      for (const file of files) {
+                        var filepath = path.join(publicOutputDirectory,file);
+                        if (path.extname(file) == ".ts") {
+                          fs.unlink(filepath,err => {
+                            if (err) throw err;
+                          });
+                        }
+                      }
+                    });*/
                     console.log('output directory: ' + publicOutputDirectory);
                     server = http.createServer(function (req, res) {
                         var uri = url.parse(req.url).pathname;

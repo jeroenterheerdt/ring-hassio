@@ -32,6 +32,17 @@ const PORT = 3000;
 
   //const publicOutputDirectory = path.join('public','output')
   const publicOutputDirectory = path.join('public/')
+  /*fs.readdir(publicOutputDirectory, (err, files) => {
+    if (err) throw err;
+    for (const file of files) {
+      var filepath = path.join(publicOutputDirectory,file);
+      if (path.extname(file) == ".ts") {
+        fs.unlink(filepath,err => {
+          if (err) throw err;
+        });
+      }
+    }
+  });*/
   console.log('output directory: '+publicOutputDirectory)
 
   var server = http.createServer(function (req, res) {
