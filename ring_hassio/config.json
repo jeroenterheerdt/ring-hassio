@@ -13,6 +13,12 @@
       "i386"
     ],
     "boot":"auto",
+    "ports": {
+        "3000/tcp": 3000
+    },
+    "ports_description": {
+        "3000/tcp": "the port to expose. you will need to open this port in your router."
+    },
     "webui": "http://[HOST]:[PORT:3000]/public/index.html",
     "options": {
         "ring_username": "your_username",
