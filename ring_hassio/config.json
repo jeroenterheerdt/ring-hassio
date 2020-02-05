@@ -13,7 +13,7 @@
       "i386"
     ],
     "boot":"auto",
-    "webui": "http://[HOST]:[PORT:1504]/index.html",
+    "webui": "http://[HOST]:[PORT:31504]/index.html",
     "options": {
         "ring_username": "your_username",
         "ring_password": "your_password"
