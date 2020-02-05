@@ -1,7 +1,7 @@
 {
-    "name": "ring_hassio",
+    "name": "ring_livestream",
     "version": "1.0.0",
-    "description": "Ring Node App on Docker",
+    "description": "Ring Livestream addon",
     "author": "Jeroen ter Heerdt",
     "main": "livestream.js",
     "scripts": {
