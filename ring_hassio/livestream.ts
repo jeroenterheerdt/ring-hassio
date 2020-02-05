@@ -3,6 +3,7 @@
 import 'dotenv/config'
 import { RingApi } from 'ring-client-api'
 import { promisify } from 'util'
+import { runInNewContext } from 'vm';
 const fs = require('fs'),
   path = require('path'),
   http = require('http'),
@@ -50,9 +51,12 @@ const PORT = 3000;
     console.log('requested uri: '+uri)
     if (uri == '/index.html' || uri == '/') {
       res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.write('<html><head><title>HLS Player fed by node.js' +
+      res.write('<html><head><title>Ring Livestream' +
           '</title></head><body>');
-      res.write('Stream: http://[IP]:'+PORT+'/public/stream.m3u8</body></html>');
+      res.write('<h1>Welcome to your Ring Livestream!</h1>');
+      res.write('<video width="352" height="198" controls autoplay src="public/stream.m3u8"></video>');
+      res.write('<br/>If you cannot see the video above open <a href="public/stream.m3u8">the stream</a> in a player such as VLC.');
+      res.write('</br>Stream: http://[IP]:'+PORT+'/public/stream.m3u8</body></html>');
       res.end();
       return;
     }
