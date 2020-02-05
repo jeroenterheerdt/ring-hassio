@@ -1,5 +1,5 @@
 # ring-hassio
-
+[![Support the author on Patreon][patreon-shield]][patreon]
 ## About
 A Hass.IO add-on for Ring Doorbells, Cameras, Alarm System, and Smart Lighting.
 This add-on wraps around [Dgreif's excellent work](https://github.com/dgreif/ring) and exposes a livestream.
@@ -21,3 +21,6 @@ Example configuration:
     "ring_password": your_password
 }
 ```
+
+[patreon-shield]: https://frenck.dev/wp-content/uploads/2019/12/patreon.png
+[patreon]: https://www.patreon.com/dutchdatadude
