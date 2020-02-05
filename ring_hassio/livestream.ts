@@ -113,7 +113,7 @@ const PORT = 3000;
 	  		}
 	  	}
 	});
-  }).listen(PORT);
+  }).listen(process.env.RING_PORT);
 
   // Maintain a hash of all connected sockets
   var sockets = {}, nextSocketId = 0;
@@ -132,7 +132,7 @@ const PORT = 3000;
     // Extend socket lifetime for demo purposes
     socket.setTimeout(4000);
   });
-  console.log('Started server, listening on port '+PORT+'.')
+  console.log('Started server, listening on port '+process.env.RING_PORT+'.')
 
   if (!(await promisify(fs.exists)(publicOutputDirectory))) {
     await promisify(fs.mkdir)(publicOutputDirectory)

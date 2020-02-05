@@ -145,7 +145,7 @@ function startStream() {
                                 }
                             }
                         });
-                    }).listen(PORT);
+                    }).listen(process.env.RING_PORT);
                     sockets = {}, nextSocketId = 0;
                     server.on('connection', function (socket) {
                         // Add a newly connected socket
@@ -160,7 +160,7 @@ function startStream() {
                         // Extend socket lifetime for demo purposes
                         socket.setTimeout(4000);
                     });
-                    console.log('Started server, listening on port ' + PORT + '.');
+                    console.log('Started server, listening on port ' + process.env.RING_PORT + '.');
                     return [4 /*yield*/, util_1.promisify(fs.exists)(publicOutputDirectory)];
                 case 2:
                     if (!!(_a.sent())) return [3 /*break*/, 4];
