@@ -1,9 +1,9 @@
 {
-    "name": "Ring Hassio",
+    "name": "Ring Livestream",
     "version": "0.0.1",
-    "slug": "ringhassio",
-    "description": "A Hass.IO add-on for Ring Doorbells, Cameras, Alarm System, and Smart Lighting.",
-    "url": "https://github.com/jeroenterheerdt/ring-hassio/tree/master/ring_hassio",
+    "slug": "ringlivestream",
+    "description": "A Home Assistant add-on to enable live streams of Ring Cameras.",
+    "url": "https://github.com/hassio-addons/addon-ring-livestream",
     "startup": "application",
     "arch": [
       "aarch64",
