@@ -20,7 +20,9 @@ This add-on wraps around [Dgreif's excellent work](https://github.com/dgreif/rin
        stream_source: http://hassio.local:port/public/stream.m3u8
        still_image_url: http://hassio.local:port/public/stream.m3u8
     ```
-9. Add a card `Picture Glance` card to your UI, set the 'Camera Entity` to the camera you have just created. Done!
+    (Don't worry about the `still_image_url` not pointing to an actual image, we are not going to use it, but it is required.)
+9. Add a card `Picture Glance` card to your UI, set the 'Camera Entity` to the camera you have just created.
+10. Done! Enjoy your shiny new livestream!
 
 ## Configuration
 Example configuration:
