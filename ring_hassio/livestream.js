@@ -41,7 +41,8 @@ require("dotenv/config");
 var ring_client_api_1 = require("ring-client-api");
 var util_1 = require("util");
 var fs = require('fs'), path = require('path'), http = require('http'), url = require('url'), zlib = require('zlib');
-var PORT = 3000;
+//const PORT = 3000;
+var PORT = process.env.RING_PORT;
 /**
  * This example creates an hls stream which is viewable in a browser
  * It also starts web app to view the stream at http://localhost:PORT
@@ -210,8 +211,8 @@ function startStream() {
         });
     });
 }
-if (!('RING_EMAIL' in process.env) || !('RING_PASS' in process.env)) {
-    console.log('Missing environment variables. Check RING_EMAIL and RING_PASS are set.');
+if (!('RING_EMAIL' in process.env) || !('RING_PASS' in process.env) || !('RING_PORT' in process.env)) {
+    console.log('Missing environment variables. Check RING_EMAIL, RING_PASS and RING_PORT are set.');
     process.exit();
 }
 else {

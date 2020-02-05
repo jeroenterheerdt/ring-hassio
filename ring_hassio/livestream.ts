@@ -10,7 +10,8 @@ const fs = require('fs'),
   url = require('url'),
   zlib = require('zlib')  
 
-const PORT = 3000;
+//const PORT = 3000;
+const PORT = process.env.RING_PORT;
 /**
  * This example creates an hls stream which is viewable in a browser
  * It also starts web app to view the stream at http://localhost:PORT
@@ -178,8 +179,8 @@ const PORT = 3000;
   }, 10* 60 * 1000) // 10*60*1000 Stop after 10 minutes.
 }
 
-if(!('RING_EMAIL' in process.env) || !('RING_PASS' in process.env)) {
-  console.log('Missing environment variables. Check RING_EMAIL and RING_PASS are set.')
+if(!('RING_EMAIL' in process.env) || !('RING_PASS' in process.env) || !('RING_PORT' in process.env)) {
+  console.log('Missing environment variables. Check RING_EMAIL, RING_PASS and RING_PORT are set.')
   process.exit()
 }
 else {

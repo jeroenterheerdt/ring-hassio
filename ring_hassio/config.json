@@ -16,10 +16,12 @@
     "webui": "http://[HOST]:[PORT:3000]/index.html",
     "options": {
         "ring_username": "your_username",
-        "ring_password": "your_password"
+        "ring_password": "your_password",
+        "port": 3000
     },
     "schema": {
         "ring_username":"email",
-        "ring_password":"str"
+        "ring_password":"str",
+        "port":"port"
     }
 }
