@@ -19,7 +19,7 @@
     "ports_description": {
         "3000/tcp": "The port you want to expose. You will need to expose this port in your router as well and make sure it is matching the port setting in the options."
     },
-    "webui": "http://[HOST]:[PORT:3001]/index.html",
+    "webui": "http://[HOST]:[PORT:3000]/index.html",
     "options": {
         "ring_username": "your_username",
         "ring_password": "your_password",
