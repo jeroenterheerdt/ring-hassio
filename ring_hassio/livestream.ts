@@ -10,7 +10,7 @@ const fs = require('fs'),
   url = require('url'),
   zlib = require('zlib')  
 
-const PORT = 31504;
+const PORT = 3000;
 /**
  * This example creates an hls stream which is viewable in a browser
  * It also starts web app to view the stream at http://localhost:PORT
