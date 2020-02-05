@@ -89,7 +89,6 @@ function startStream() {
                             res.write('<h1>Welcome to your Ring Livestream!</h1>');
                             res.write('<video width="352" height="198" controls autoplay src="public/stream.m3u8"></video>');
                             res.write('<br/>If you cannot see the video above open <a href="public/stream.m3u8">the stream</a> in a player such as VLC.');
-                            res.write('</br>Stream: http://[IP]:' + PORT + '/public/stream.m3u8</body></html>');
                             res.end();
                             return;
                         }
