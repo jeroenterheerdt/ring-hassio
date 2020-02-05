@@ -9,8 +9,8 @@ This add-on wraps around [Dgreif's excellent work](https://github.com/dgreif/rin
 2. Install the "Ring Hassio" add-on.
 3. Configure your Ring username, password and port (see configuration below)
 4. Start the "Ring Hassio" add-on
-5. Open port 3000 on your router.
-6. Open the stream at http://hassio.local:3000/public/stream.m3u8. We recommend using VLC or equivalent.
+5. Open port 3000 (default) on your router or whatever you set in the config.
+6. Open the stream at http://hassio.local:[port (default 3000)]/public/stream.m3u8. We recommend using VLC or equivalent.
 
 
 ## Configuration
