@@ -41,7 +41,7 @@ require("dotenv/config");
 var ring_client_api_1 = require("ring-client-api");
 var util_1 = require("util");
 var fs = require('fs'), path = require('path'), http = require('http'), url = require('url'), zlib = require('zlib');
-var PORT = 3000;
+var PORT = 1504;
 /**
  * This example creates an hls stream which is viewable in a browser
  * It also starts web app to view the stream at http://localhost:PORT
@@ -145,7 +145,7 @@ function startStream() {
                                 }
                             }
                         });
-                    }).listen(process.env.RING_PORT);
+                    }).listen(PORT);
                     sockets = {}, nextSocketId = 0;
                     server.on('connection', function (socket) {
                         // Add a newly connected socket
@@ -160,7 +160,7 @@ function startStream() {
                         // Extend socket lifetime for demo purposes
                         socket.setTimeout(4000);
                     });
-                    console.log('Started server, listening on port ' + process.env.RING_PORT + '.');
+                    console.log('Started server, listening on port ' + PORT + '.');
                     return [4 /*yield*/, util_1.promisify(fs.exists)(publicOutputDirectory)];
                 case 2:
                     if (!!(_a.sent())) return [3 /*break*/, 4];

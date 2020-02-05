@@ -12,18 +12,11 @@
       "armv7",
       "i386"
     ],
-    "ports": {
-        "3000/tcp": 3000
-    },
-    "ports_description": {
-        "3000/tcp": "The port you configured in the options below. Defaults to 3000."
-    },
     "boot":"auto",
-    "webui": "http://[HOST]:[PORT:3000]/index.html",
+    "webui": "http://[HOST]:[PORT:1504]/index.html",
     "options": {
         "ring_username": "your_username",
-        "ring_password": "your_password",
-        "port": 3000
+        "ring_password": "your_password"
     },
     "schema": {
         "ring_username":"email",

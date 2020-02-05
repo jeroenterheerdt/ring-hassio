@@ -10,7 +10,7 @@ const fs = require('fs'),
   url = require('url'),
   zlib = require('zlib')  
 
-const PORT = 3000;
+const PORT = 1504;
 /**
  * This example creates an hls stream which is viewable in a browser
  * It also starts web app to view the stream at http://localhost:PORT
@@ -113,7 +113,7 @@ const PORT = 3000;
 	  		}
 	  	}
 	});
-  }).listen(process.env.RING_PORT);
+  }).listen(PORT);
 
   // Maintain a hash of all connected sockets
   var sockets = {}, nextSocketId = 0;
@@ -132,7 +132,7 @@ const PORT = 3000;
     // Extend socket lifetime for demo purposes
     socket.setTimeout(4000);
   });
-  console.log('Started server, listening on port '+process.env.RING_PORT+'.')
+  console.log('Started server, listening on port '+PORT+'.')
 
   if (!(await promisify(fs.exists)(publicOutputDirectory))) {
     await promisify(fs.mkdir)(publicOutputDirectory)
