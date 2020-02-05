@@ -20,7 +20,6 @@
     },
     "schema": {
         "ring_username":"email",
-        "ring_password":"str",
-        "port":"port"
+        "ring_password":"str"
     }
 }
