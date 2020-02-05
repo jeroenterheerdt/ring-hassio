@@ -12,6 +12,12 @@
       "armv7",
       "i386"
     ],
+    "ports": {
+        "3000/tcp": 3000
+    },
+    "ports_description": {
+        "3000/tcp": "The port you configured in the options below. Defaults to 3000."
+    },
     "boot":"auto",
     "webui": "http://[HOST]:[PORT:3000]/index.html",
     "options": {
