@@ -9,14 +9,14 @@
     },
     "dependencies": {
         "dotenv-extended": "^2.7.1",
-        "ring-client-api": "5.12.1",
+        "ring-client-api": "6.1.1",
         "http": "^0.0.0",
         "zlib": "^1.0.5",
         "url": "^0.11.0"
     },
     "devDependencies": {
-        "@types/node": "^13.5.0",
+        "@types/node": "^13.7.0",
         "@types/socket.io-client": "^1.4.32",
-        "typescript": "^3.7.4"
+        "typescript": "^3.7.5"
     }
 }
