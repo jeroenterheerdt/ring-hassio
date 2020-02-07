@@ -3,8 +3,9 @@
 ## About
 A Home Assistant add-on to enable live streams of Ring Cameras.
 This add-on wraps around [Dgreif's excellent work](https://github.com/dgreif/ring) and exposes a livestream.
+It can be used both in HASSIO / Home Assistant and Home Assistant Core using Docker.
 
-## Installation
+## Installation in HASSIO / Home Assistant
 1. Add this GitHub repository to your add-on store. 
 2. Configure your Ring username, password and port (see configuration below).
 3. Start the "Ring Livestream" add-on. Check for errors in the logs.
@@ -29,6 +30,30 @@ Example configuration:
     "ring_username": your_email_address,
     "ring_password": your_password
 }
+```
+
+## Installation in Home Assistant Core / Docker
+Thanks to @robert-alfaro for figuring this out!
+1. Ensure device that you will be using has UPnP/NAT-PMP enabled. This is most probably a setting in your router. To be more strict, if you can, use explicit port forward rules for the ports documented here: [Ring Ports](https://support.ring.com/hc/en-us/articles/205385394-The-Protocols-and-Ports-Used-by-Ring-Devices).
+2. Clone this repository.
+3. Create environment variables or create options.json file:
+```json
+{
+    "ring_username": your_email_address,
+    "ring_password": your_password,
+    "port": 3000
+}
+```
+4. Build docker image
+> NOTE: substitute below 'armv7' with your machine architecture
+```bash
+cd <path to this repo>
+docker build --build-arg BUILD_FROM='homeassistant/armv7-base:3.11' -t ring-hassio .
+```
+
+5. run docker image
+```bash
+docker run --init -d --name="ring-livestream" -v <path to options.json>:/data/options.json -p 3000:3000 ring-hassio
 ```
 
 [patreon-shield]: https://frenck.dev/wp-content/uploads/2019/12/patreon.png
