@@ -23,7 +23,7 @@ It can be used both in HASSIO / Home Assistant and Home Assistant Core using Doc
 7. Add a card `Picture Glance` card to your UI, set the 'Camera Entity` to the camera you have just created.
 8. Done! Enjoy your shiny new livestream!
 
-## Configuration
+### Configuration
 Example configuration:
 ```json
 {
