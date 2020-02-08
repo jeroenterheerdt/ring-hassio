@@ -9,8 +9,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 EXPOSE 3000/tcp
 
 RUN apk add --no-cache \
-    nodejs=12.14.0-r0 \
-    npm=12.14.0-r0 \
+    nodejs \
+    npm \
     ffmpeg \
     git && \
     cd / && \
