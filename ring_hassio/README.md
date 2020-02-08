@@ -31,5 +31,20 @@ Example configuration:
 }
 ```
 
+## Taking a snapshot
+Currently the addon does not support taking snapshots, but when it does this is the configuration you will need:
+In order to use the `snapshot` service, you will need to following settings in your `configuration.yaml`:
+   ```yaml
+   homeassistant:
+     whitelist_external_dirs:
+       - /config/tmp
+   ```
+   You can then call the `snapshot` service like this:
+   ```yaml
+   service: camera.snapshot
+   entity_id: [entityID]
+   filename: tmp/foo.jpg
+   ```
+
 [patreon-shield]: https://frenck.dev/wp-content/uploads/2019/12/patreon.png
 [patreon]: https://www.patreon.com/dutchdatadude
