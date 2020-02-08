@@ -1,6 +1,6 @@
 {
     "name": "Ring Livestream",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "slug": "ringlivestream",
     "description": "A Home Assistant add-on to enable live streams of Ring Cameras.",
     "url": "https://github.com/jeroenterheerdt/ring-hassio",
@@ -29,5 +29,9 @@
         "ring_username":"email",
         "ring_password":"str",
         "port":"port"
-    }
+    },
+    "map": [
+        "share:rw",
+        "config:rw"
+    ]
 }
