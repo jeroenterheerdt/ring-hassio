@@ -11,8 +11,9 @@ It can be used both in HASSIO / Home Assistant and Home Assistant Core using Doc
 3. Start the "Ring Livestream" add-on. Check for errors in the logs.
 4. Open port 3000 (default) on your router or whatever you set in the config.
 5. Open the stream at http://hassio.local:port/public/stream.m3u8 to make sure it works before going any further. We recommend using VLC or equivalent.
-6. Add a camera to Home Assistant, such as:
+6. Enable the stream component and add a camera to Home Assistant, such as:
    ```yaml
+   stream:
    camera:
      - platform: generic
        name: Ring Livestream
