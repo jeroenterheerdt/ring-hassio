@@ -13,7 +13,6 @@ It can be used both in HASSIO / Home Assistant and Home Assistant Core using Doc
 5. Open the stream at http://hassio.local:port/public/stream.m3u8 to make sure it works before going any further. We recommend using VLC or equivalent.
 6. Enable the stream component and add a camera to Home Assistant, such as:
    ```yaml
-   stream:
    camera:
      - platform: generic
        name: Ring Livestream
