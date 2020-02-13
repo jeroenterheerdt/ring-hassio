@@ -20,7 +20,7 @@ It can be used both in HASSIO / Home Assistant and Home Assistant Core using Doc
        still_image_url: http://hassio.local:port/public/stream.m3u8
     ```
     (Don't worry about the `still_image_url` not pointing to an actual image, we are not going to use it, but it is required.)
-7. Add a card `Picture Glance` card to your UI, set the 'Camera Entity` to the camera you have just created.
+7. Add a card `Picture Glance` card to your UI, set the 'Camera Entity` to the camera you have just created. If it was created for your automatically, go in and see if the settings are correct!
 8. Done! Enjoy your shiny new livestream!
 
 ### Configuration
