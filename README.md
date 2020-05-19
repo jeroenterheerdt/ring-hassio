@@ -9,6 +9,9 @@ A Home Assistant add-on to enable live streams of Ring Cameras.
 This add-on wraps around [Dgreif's excellent work](https://github.com/dgreif/ring) and exposes a livestream.
 It can be used both in HASSIO / Home Assistant and Home Assistant Core using Docker.
 
+## Note
+This addon does not support 2FA
+
 ## Installation in HASSIO / Home Assistant
 1. Add this GitHub repository to your add-on store. 
 2. Configure your Ring username, password and port (see configuration below).
