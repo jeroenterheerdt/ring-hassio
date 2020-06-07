@@ -211,8 +211,8 @@ function startStream() {
         });
     });
 }
-if (!('RING_EMAIL' in process.env) || !('RING_PASS' in process.env) || !('RING_PORT' in process.env)) {
-    console.log('Missing environment variables. Check RING_EMAIL, RING_PASS and RING_PORT are set.');
+if (!('RING_REFRESH_TOKEN' in process.env) || !('RING_PORT' in process.env)) {
+    console.log('Missing environment variables. Check RING_REFRESH_TOKEN and RING_PORT are set.');
     process.exit();
 }
 else {

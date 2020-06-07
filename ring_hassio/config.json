@@ -21,13 +21,11 @@
     },
     "webui": "http://[HOST]:[PORT:3000]/index.html",
     "options": {
-        "ring_username": "your_username",
-        "ring_password": "your_password",
+        "ring_refresh_token": "refresh_token",
         "port": 3000
     },
     "schema": {
-        "ring_username":"email",
-        "ring_password":"str",
+        "ring_refresh_token":"str",
         "port":"port"
     },
     "map": [

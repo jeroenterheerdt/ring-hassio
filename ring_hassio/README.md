@@ -6,7 +6,7 @@ This add-on wraps around [Dgreif's excellent work](https://github.com/dgreif/rin
 
 ## Installation
 1. Add this GitHub repository to your add-on store. 
-2. Configure your Ring username, password and port (see configuration below).
+2. Configure your Ring Refresh Token and port (see configuration below).
 3. Start the "Ring Livestream" add-on. Check for errors in the logs.
 4. Open port 3000 (default) on your router or whatever you set in the config.
 5. Open the stream at http://hassio.local:port/public/stream.m3u8 to make sure it works before going any further. We recommend using VLC or equivalent.
@@ -26,8 +26,7 @@ This add-on wraps around [Dgreif's excellent work](https://github.com/dgreif/rin
 Example configuration:
 ```json
 {
-    "ring_username": your_email_address,
-    "ring_password": your_password
+    "ring_refresh_token": your_refresh_token
 }
 ```
 
