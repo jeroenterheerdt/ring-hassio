@@ -34,8 +34,7 @@ This addon does not support 2FA
 Example configuration:
 ```json
 {
-    "ring_username": your_email_address,
-    "ring_password": your_password
+    "ring_refresh_token": your_refresh_token
 }
 ```
 
@@ -46,8 +45,7 @@ Thanks to @robert-alfaro for figuring this out!
 3. Create environment variables or create options.json file:
 ```json
 {
-    "ring_username": your_email_address,
-    "ring_password": your_password,
+    "ring_refresh_token": your_refresh_token,
     "port": 3000
 }
 ```
