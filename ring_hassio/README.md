@@ -29,7 +29,7 @@ Example configuration:
     "ring_refresh_token": your_refresh_token
 }
 ```
-You need to create a refresh token - see https://github.com/dgreif/ring/wiki/Refresh-Tokens on how to do that, note that you will have to have node and npm installed on your machine.
+You need to create a refresh token - see https://github.com/dgreif/ring/wiki/Refresh-Tokens on how to do that. Note that you will have to have node and npm installed on your machine.
 
 ## Taking a snapshot
 Currently the addon does not support taking snapshots, but when it does this is the configuration you will need:
