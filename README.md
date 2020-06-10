@@ -49,7 +49,7 @@ In order to use the `snapshot` service, you will need to following settings in y
    
 ## Battery conservation
 A workaround to start/stop streaming (and avoid quick discharge) in Hassio is to start the addon on demand.
-To do this:
+To do this set up a sensor and switch:
 
    ```yaml
    sensor:
@@ -75,7 +75,9 @@ To do this:
              data:
                addon: xxxxxxxx_ringlivestream
    ```
-To get the 8 chars code "xxxxxxxx_ringlivestream" open the addon page and check the URL bar.
+- for the sensor you will need the URL of the Info page on the Ring Livestream add-on page.
+- a `[Long_Lived_Access_Token]` can be generated on your profile page in Home Assistant (https://hassio.local:port/profile), scroll all the way to the bottom.
+- To get the 8 chars code "xxxxxxxx_ringlivestream" get them from the same URL.
 
 [patreon-shield]: https://frenck.dev/wp-content/uploads/2019/12/patreon.png
 [patreon]: https://www.patreon.com/dutchdatadude
