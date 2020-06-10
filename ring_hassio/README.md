@@ -44,6 +44,36 @@ In order to use the `snapshot` service, you will need to following settings in y
    entity_id: [entityID]
    filename: tmp/foo.jpg
    ```
+   
+## Battery conservation
+A workaround to start/stop streaming (and avoid quick discharge) in Hassio is to start the addon on demand.
+To do this:
+
+   ```yaml
+   sensor:
+     - platform: rest
+       resource: "http://hassio.local:port/api/hassio/addons/xxxxxxxx_ringlivestream/info"
+       headers:
+         Authorization: "Bearer [Long_Lived_Access_Token]"
+         Content-Type: application/json
+       name: ring_addon_state
+       value_template: "{{value_json['data']['state']}}" 
+    
+   switch:
+     - platform: template
+       switches:
+         ring_live_stream:
+           value_template: "{{ is_state('sensor.ring_addon_state', 'started') }}"
+           turn_on:
+             service: hassio.addon_start
+             data:
+               addon: xxxxxxxx_ringlivestream
+           turn_off:
+             service: hassio.addon_stop
+             data:
+               addon: xxxxxxxx_ringlivestream
+   ```
+To get the 8 chars code "xxxxxxxx_ringlivestream" open the addon page and check the URL bar.
 
 [patreon-shield]: https://frenck.dev/wp-content/uploads/2019/12/patreon.png
 [patreon]: https://www.patreon.com/dutchdatadude
