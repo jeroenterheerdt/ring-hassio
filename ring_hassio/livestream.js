@@ -159,7 +159,7 @@ function startStream() {
                             delete sockets[socketId];
                         });
                         // Extend socket lifetime for demo purposes
-                        socket.setTimeout(4000);
+                        //socket.setTimeout(4000);
                     });
                     console.log('Started server, listening on port ' + PORT + '.');
                     return [4 /*yield*/, util_1.promisify(fs.exists)(publicOutputDirectory)];
@@ -199,8 +199,9 @@ function startStream() {
                             sockets[socketId].destroy();
                         }
                         //app.stop()
-                        console.log('Restarting server');
-                        startStream();
+                        fs.unlinkSync(path);
+                        //console.log('Restarting server');
+                        //startStream();
                     });
                     setTimeout(function () {
                         console.log('Stopping call...');
