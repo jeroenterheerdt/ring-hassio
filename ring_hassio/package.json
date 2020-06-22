@@ -8,15 +8,15 @@
         "start": "node livestream.js"
     },
     "dependencies": {
-        "dotenv-extended": "^2.7.1",
-        "ring-client-api": "6.1.1",
+        "dotenv-extended": "^2.8.0",
+        "ring-client-api": "9.3.3",
         "http": "^0.0.0",
         "zlib": "^1.0.5",
         "url": "^0.11.0"
     },
     "devDependencies": {
-        "@types/node": "^13.7.0",
-        "@types/socket.io-client": "^1.4.32",
-        "typescript": "^3.7.5"
+        "@types/node": "^14.0.13",
+        "@types/socket.io-client": "^1.4.33",
+        "typescript": "^3.9.5"
     }
 }
