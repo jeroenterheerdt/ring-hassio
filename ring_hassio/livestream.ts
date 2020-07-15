@@ -3,7 +3,6 @@
 import 'dotenv/config'
 import { RingApi } from 'ring-client-api'
 import { promisify } from 'util'
-import { runInNewContext } from 'vm';
 const fs = require('fs'),
   path = require('path'),
   http = require('http'),
@@ -19,8 +18,6 @@ const PORT = process.env.RING_PORT;
 
  async function startStream() {
   const ringApi = new RingApi({
-      email: process.env.RING_EMAIL,
-      password: process.env.RING_PASS,
       // Refresh token is used when 2fa is on
       refreshToken: process.env.RING_REFRESH_TOKEN!,
       debug: true

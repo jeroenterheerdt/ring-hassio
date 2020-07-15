@@ -54,8 +54,6 @@ function startStream() {
             switch (_a.label) {
                 case 0:
                     ringApi = new ring_client_api_1.RingApi({
-                        email: process.env.RING_EMAIL,
-                        password: process.env.RING_PASS,
                         // Refresh token is used when 2fa is on
                         refreshToken: process.env.RING_REFRESH_TOKEN,
                         debug: true
@@ -159,7 +157,7 @@ function startStream() {
                             delete sockets[socketId];
                         });
                         // Extend socket lifetime for demo purposes
-                        //socket.setTimeout(4000);
+                        socket.setTimeout(4000);
                     });
                     console.log('Started server, listening on port ' + PORT + '.');
                     return [4 /*yield*/, util_1.promisify(fs.exists)(publicOutputDirectory)];
@@ -199,9 +197,8 @@ function startStream() {
                             sockets[socketId].destroy();
                         }
                         //app.stop()
-                        fs.unlinkSync(path);
-                        //console.log('Restarting server');
-                        //startStream();
+                        console.log('Restarting server');
+                        startStream();
                     });
                     setTimeout(function () {
                         console.log('Stopping call...');
