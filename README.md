@@ -11,14 +11,14 @@ This add-on wraps around [Dgreif's excellent work](https://github.com/dgreif/rin
 2. Configure your Ring Refresh Token and port (see configuration below).
 3. Start the "Ring Livestream" add-on. Check for errors in the logs.
 4. For remote access, open up the port in your router.
-5. Open the stream at http://hassio.local:port/public/stream.m3u8 to make sure it works before going any further. We recommend using VLC or equivalent.
+5. Open the stream at http://homeassistant.local:port/public/stream.m3u8 to make sure it works before going any further. We recommend using VLC or equivalent.
 6. Add a camera to Home Assistant, such as:
    ```yaml
    camera:
      - platform: generic
        name: Ring Livestream
-       stream_source: http://hassio.local:port/public/stream.m3u8
-       still_image_url: http://hassio.local:port/public/stream.m3u8
+       stream_source: http://homeassistant.local:port/public/stream.m3u8
+       still_image_url: http://homeassistant.local:port/public/stream.m3u8
     ```
     (Don't worry about the `still_image_url` not pointing to an actual image, we are not going to use it, but it is required.)
 7. Add a card `Picture Glance` card to your UI, set the 'Camera Entity` to the camera you have just created.
@@ -26,12 +26,12 @@ This add-on wraps around [Dgreif's excellent work](https://github.com/dgreif/rin
 
 ## Configuration
 Example configuration:
-```json
-{
-    "ring_refresh_token": your_refresh_token
-}
+```yaml
+ring_refresh_token: your_refresh_token
+camera_name: Front Door
 ```
-You need to create a refresh token - see https://github.com/dgreif/ring/wiki/Refresh-Tokens on how to do that. Note that you will have to have node and npm installed on your machine.
+* You need to create a refresh token - see https://github.com/dgreif/ring/wiki/Refresh-Tokens on how to do that. Note that you will have to have node and npm installed on your machine.
+* The camera name is the name entred when setting up the camera in the Ring app.
 
 ## Taking a snapshot
 Currently the addon does not support taking snapshots, but when it does this is the configuration you will need:

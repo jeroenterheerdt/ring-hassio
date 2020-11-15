@@ -41,14 +41,50 @@ require("dotenv/config");
 var ring_client_api_1 = require("ring-client-api");
 var util_1 = require("util");
 var fs = require('fs'), path = require('path'), http = require('http'), url = require('url'), zlib = require('zlib');
-//const PORT = 3000;
 var PORT = process.env.RING_PORT;
+//
+var CAMERA_NAME = process.env.CAMERA_NAME;
+var chosenCamera = CAMERA_NAME;
 /**
  * This example creates an hls stream which is viewable in a browser
  * It also starts web app to view the stream at http://localhost:PORT
  **/
 function startStream() {
     return __awaiter(this, void 0, void 0, function () {
+        ///////////////
+        function getCamera() {
+            return __awaiter(this, void 0, void 0, function () {
+                var cameras, camera, i, cameraName;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, ringApi.getCameras()];
+                        case 1:
+                            cameras = _a.sent();
+                            //
+                            if (!chosenCamera) {
+                                for (i = 0; i < cameras.length; i++) {
+                                    cameraName = cameras[i].initialData.description;
+                                    console.log("Checking If " + cameraName + " Is the same as the camera we are looking for (" + chosenCamera + ")");
+                                    if (chosenCamera == cameraName) {
+                                        camera = cameras[i];
+                                        console.log("Matched " + cameraName);
+                                    }
+                                }
+                            }
+                            else {
+                                camera = cameras[0];
+                            }
+                            //
+                            if (!cameras) {
+                                console.log('No cameras found');
+                                return [2 /*return*/];
+                            }
+                            //
+                            return [2 /*return*/, camera];
+                    }
+                });
+            });
+        }
         var ringApi, camera, publicOutputDirectory, server, sockets, nextSocketId, sipSession;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -58,36 +94,24 @@ function startStream() {
                         refreshToken: process.env.RING_REFRESH_TOKEN,
                         debug: true
                     });
-                    return [4 /*yield*/, ringApi.getCameras()];
+                    return [4 /*yield*/, getCamera()
+                        ///////////////
+                    ];
                 case 1:
-                    camera = (_a.sent())[0];
-                    if (!camera) {
-                        console.log('No cameras found');
-                        return [2 /*return*/];
-                    }
+                    camera = _a.sent();
                     publicOutputDirectory = path.join('public/');
-                    /*fs.readdir(publicOutputDirectory, (err, files) => {
-                      if (err) throw err;
-                      for (const file of files) {
-                        var filepath = path.join(publicOutputDirectory,file);
-                        if (path.extname(file) == ".ts") {
-                          fs.unlink(filepath,err => {
-                            if (err) throw err;
-                          });
-                        }
-                      }
-                    });*/
                     console.log('output directory: ' + publicOutputDirectory);
                     server = http.createServer(function (req, res) {
+                        // Get URL
                         var uri = url.parse(req.url).pathname;
                         console.log('requested uri: ' + uri);
+                        // If Accessing The Main Page
                         if (uri == '/index.html' || uri == '/') {
                             res.writeHead(200, { 'Content-Type': 'text/html' });
-                            res.write('<html><head><title>Ring Livestream' +
-                                '</title></head><body>');
+                            res.write('<html><head><title>Ring Livestream</title></head><body>');
                             res.write('<h1>Welcome to your Ring Livestream!</h1>');
-                            res.write('<video width="352" height="198" controls autoplay src="public/stream.m3u8"></video>');
-                            res.write('<br/>If you cannot see the video above open <a href="public/stream.m3u8">the stream</a> in a player such as VLC.');
+                            res.write("<video width=\"352\" height=\"198\" controls autoplay src=\"public/stream.m3u8\"></video>");
+                            res.write("<br/>If you cannot see the video above open <a href=\"public/stream.m3u8\">the stream</a> in a player such as VLC.");
                             res.end();
                             return;
                         }
@@ -209,8 +233,8 @@ function startStream() {
         });
     });
 }
-if (!('RING_REFRESH_TOKEN' in process.env) || !('RING_PORT' in process.env)) {
-    console.log('Missing environment variables. Check RING_REFRESH_TOKEN and RING_PORT are set.');
+if (!('RING_REFRESH_TOKEN' in process.env) || !('RING_PORT' in process.env) || !('CAMERA_NAME' in process.env)) {
+    console.log('Missing environment variables. Check RING_REFRESH_TOKEN, RING_PORT and CAMERA_NAME are set.');
     process.exit();
 }
 else {
