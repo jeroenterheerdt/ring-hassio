@@ -61,7 +61,7 @@ function startStream() {
                         case 1:
                             cameras = _a.sent();
                             //
-                            if (!chosenCamera) {
+                            if (chosenCamera) {
                                 for (i = 0; i < cameras.length; i++) {
                                     cameraName = cameras[i].initialData.description;
                                     console.log("Checking If " + cameraName + " Is the same as the camera we are looking for (" + chosenCamera + ")");

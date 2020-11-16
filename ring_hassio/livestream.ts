@@ -30,7 +30,7 @@ var chosenCamera = CAMERA_NAME;
       var cameras = await ringApi.getCameras();
       var camera;
       //
-      if (!chosenCamera) {
+      if (chosenCamera) {
         for (var i=0; i < cameras.length; i++) {
           var cameraName = cameras[i].initialData.description;
           console.log(`Checking If ${cameraName} Is the same as the camera we are looking for (${chosenCamera})`);
@@ -196,3 +196,8 @@ if(!('RING_REFRESH_TOKEN' in process.env) || !('RING_PORT' in process.env) || !(
 else {
   startStream()
 }
+
+
+
+
+
