@@ -47,7 +47,13 @@ In order to use the `snapshot` service, you will need to following settings in y
    entity_id: [entityID]
    filename: tmp/foo.jpg
    ```
-   
+
+Some users reported success to create a snapshot using:
+```camera:
+  - platform: ffmpeg
+    input: http://hassio.local:port/public/stream.m3u8
+```
+
 ## Battery conservation
 A workaround to start/stop streaming (and avoid quick discharge) in Hassio is to start the addon on demand.
 To do this set up a sensor and switch:
