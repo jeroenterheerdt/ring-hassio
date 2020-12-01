@@ -14,7 +14,7 @@ RUN apk add --no-cache \
     ffmpeg \
     git && \
     cd / && \
-    git clone https://github.com/Brahmah/ring-hassio && \
+    git clone https://github.com/jeroenterheerdt/ring-hassio && \
     cd ring-hassio/ring_hassio && \
     npm install --unsafe-perm && \
     chmod a+x run.sh
