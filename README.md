@@ -7,7 +7,7 @@ This add-on wraps around [Dgreif's excellent work](https://github.com/dgreif/rin
 > **DOT NOT run this add-on with 24-hour streaming - use this addon by starting it on-demand**
 
 ## Installation
-1. Add this GitHub repository to your add-on store. 
+1. Add this GitHub repository to your **supervisor** (not HACS) add-on store. 
 2. Configure your Ring Refresh Token and port (see configuration below).
 3. Start the "Ring Livestream" add-on. Check for errors in the logs.
 4. For remote access, open up the port in your router.
