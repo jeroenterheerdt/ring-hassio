@@ -55,36 +55,50 @@ Some users reported success to create a snapshot using:
 ```
 
 ## Battery conservation
-A workaround to start/stop streaming (and avoid quick discharge) in Hassio is to start the addon on demand.
+A workaround to start/stop streaming (and avoid quick discharge) in Hassio is to start the addon on demand. Also, automation could be added that turns off the stream after time limit.
 To do this set up a sensor and switch:
 
    ```yaml
-   sensor:
-     - platform: rest
-       resource: "http://hassio.local:port/api/hassio/addons/xxxxxxxx_ringlivestream/info"
-       headers:
-         Authorization: "Bearer [Long_Lived_Access_Token]"
-         Content-Type: application/json
-       name: ring_addon_state
-       value_template: "{{value_json['data']['state']}}" 
+   binary_sensor:
+     - platform: command_line
+       command: "if curl -sSf http://homeassistant.local:3000/index.html &> /dev/null; then echo 1; else echo 0; fi"
+       device_class: connectivity
+       scan_interval: 3 # check status every X seconds
+       name: Ring Livestream State
+       payload_on: 1
+       payload_off: 0
     
    switch:
      - platform: template
        switches:
          ring_live_stream:
-           value_template: "{{ is_state('sensor.ring_addon_state', 'started') }}"
+           friendly_name: "Ring Live Stream"
+           value_template: "{{ is_state('binary_sensor.ring_livestream_state', 'on') }}"
            turn_on:
              service: hassio.addon_start
              data:
-               addon: xxxxxxxx_ringlivestream
+               addon: 44c60309_ringlivestream
            turn_off:
              service: hassio.addon_stop
              data:
-               addon: xxxxxxxx_ringlivestream
+               addon: 44c60309_ringlivestream
+               
+   automation:
+     - id: turn_off_ring_live_stream_addon
+       alias: Turn Off Ring Live Stream Addon after delay
+       trigger:
+         - platform: state
+           entity_id: binary_sensor.ring_livestream_state
+           to: "on"
+           for:
+             minutes: 2
+       action:
+         - service: switch.turn_off
+           data:
+             entity_id: switch.ring_live_stream
    ```
-- for the sensor you will need the URL of the Info page on the Ring Livestream add-on page.
-- a `[Long_Lived_Access_Token]` can be generated on your profile page in Home Assistant (https://hassio.local:port/profile), scroll all the way to the bottom.
-- To get the 8 chars code "xxxxxxxx_ringlivestream" get them from the same URL.
+- for the sensor you will need to update the port in URL if you change it in the configuration of the add-on.
+- the switch will bounce back to the 'off' state on the next sensor refresh cycle while add-on is starting. If you want to add your own automations, make sure they're based on the sensor, not on the switch.
 
 [patreon-shield]: https://frenck.dev/wp-content/uploads/2019/12/patreon.png
 [patreon]: https://www.patreon.com/dutchdatadude
